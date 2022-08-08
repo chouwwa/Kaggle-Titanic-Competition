@@ -93,3 +93,12 @@ def create_dummies(df,column_name):
     dummies = pd.get_dummies(df[column_name],prefix=column_name)
     df = pd.concat([df,dummies],axis=1)
     return df
+
+def process(df):
+    df = process_missing(df)
+    df = process_age(df)
+    df = process_fare(df)
+    df = process_titles(df)
+    df = process_cabin(df)
+    df = create_dummies(df, ['Age_categories','Fare_categories','Title','Cabin_type','Sex'])
+    return df
